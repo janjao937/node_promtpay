@@ -20,7 +20,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 const testMobile = "0805867399";
-
+const path = require('path');
+app.get("/", async(req, res, next) => {
+  try{
+    return res.sendFile(path.join(__dirname, '../index.html'));
+  }catch(err){
+    next(err);
+  }
+});
 //Route 
 app.post("/generate", async(req, res, next) => {
   try{
