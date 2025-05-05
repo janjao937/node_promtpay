@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="amount" placeholder="amount">
+        <button onclick="getQR()">Get QR</button>
+    </div>
+    <img id="img-qr" src = "" style = "width: 500px; object-fit: contain;">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script>
+        function getQR() {
+            $.ajax({
+                method: "post",
+                url: "http://localhost:8888/generate",
+                data: {
+                    amount: parseFloat($("#amount").val())
+                },
+                success: function(res) {
+                    // console.log("good", res);
+                    $("#img-qr").attr("src", res.data);
+                },
+                error: function (err) {
+                    console.log("error", err);
+                }
+            })
+        }
+    </script>
+</body>
+</html>
