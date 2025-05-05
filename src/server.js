@@ -28,6 +28,7 @@ app.get("/", async(req, res, next) => {
     next(err);
   }
 });
+
 //Route 
 app.post("/generate", async(req, res, next) => {
   try{
